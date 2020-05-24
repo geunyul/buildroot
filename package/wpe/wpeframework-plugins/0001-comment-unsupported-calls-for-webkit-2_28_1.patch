@@ -1,0 +1,51 @@
+diff -ruN wpeframework-plugins.orig/cmake/FindWPEWebKit.cmake wpeframework-plugins/cmake/FindWPEWebKit.cmake
+--- wpeframework-plugins.orig/cmake/FindWPEWebKit.cmake	2020-05-22 00:00:10.086785998 +0530
++++ wpeframework-plugins/cmake/FindWPEWebKit.cmake	2020-05-24 02:13:47.793294872 +0530
+@@ -47,7 +47,7 @@
+     if("${PC_WPE_WEBKIT_VERSION}" STREQUAL "0.0.20170728")
+         set(WPE_WEBKIT_DEPRECATED_API TRUE)
+     endif()
+-    if("${PC_WPE_WEBKIT_VERSION}" STREQUAL "2.28.2")
++    if("${PC_WPE_WEBKIT_VERSION}" STREQUAL "2.28.1")
+         set(WEBKIT_GLIB_API TRUE)
+     endif()
+     find_path(
+diff -ruN wpeframework-plugins.orig/WebKitBrowser/WebKitImplementation.cpp wpeframework-plugins/WebKitBrowser/WebKitImplementation.cpp
+--- wpeframework-plugins.orig/WebKitBrowser/WebKitImplementation.cpp	2020-05-22 18:40:53.808459223 +0530
++++ wpeframework-plugins/WebKitBrowser/WebKitImplementation.cpp	2020-05-24 02:15:32.478698297 +0530
+@@ -976,7 +976,7 @@
+                     [](gpointer customdata) -> gboolean {
+                         WebKitImplementation* object = static_cast<WebKitImplementation*>(customdata);
+ #ifdef WEBKIT_GLIB_API
+-                        webkit_web_view_hide(object->_view);
++                        // webkit_web_view_hide(object->_view);
+ #else
+                         WKViewSetViewState(object->_view, (object->_state == PluginHost::IStateControl::RESUMED ? kWKViewStateIsInWindow : 0));
+ #endif
+@@ -997,7 +997,7 @@
+                     [](gpointer customdata) -> gboolean {
+                         WebKitImplementation* object = static_cast<WebKitImplementation*>(customdata);
+ #ifdef WEBKIT_GLIB_API
+-                        webkit_web_view_show(object->_view);
++                        // webkit_web_view_show(object->_view);
+ #else
+                         WKViewSetViewState(object->_view, (object->_state == PluginHost::IStateControl::RESUMED ? kWKViewStateIsInWindow : 0) | kWKViewStateIsVisible);
+ #endif
+@@ -1021,7 +1021,7 @@
+                     [](gpointer customdata) -> gboolean {
+                         WebKitImplementation* object = static_cast<WebKitImplementation*>(customdata);
+ #ifdef WEBKIT_GLIB_API
+-                        webkit_web_view_suspend(object->_view);
++                        // webkit_web_view_suspend(object->_view);
+ #else
+                         WKViewSetViewState(object->_view, (object->_hidden ? 0 : kWKViewStateIsVisible));
+ #endif
+@@ -1046,7 +1046,7 @@
+                     [](gpointer customdata) -> gboolean {
+                         WebKitImplementation* object = static_cast<WebKitImplementation*>(customdata);
+ #ifdef WEBKIT_GLIB_API
+-                        webkit_web_view_resume(object->_view);
++                        // webkit_web_view_resume(object->_view);
+ #else
+                         WKViewSetViewState(object->_view, (object->_hidden ? 0 : kWKViewStateIsVisible) | kWKViewStateIsInWindow);
+ #endif

@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-WPEFRAMEWORK_VERSION = ba1d00007df4f067f30bec24e651caaf2dae7ac0
+WPEFRAMEWORK_VERSION = 836ed9533ea74b3f8cb7f06ff14a48f4420f0935
 WPEFRAMEWORK_SITE = $(call github,rdkcentral,Thunder,$(WPEFRAMEWORK_VERSION))
 WPEFRAMEWORK_INSTALL_STAGING = YES
 WPEFRAMEWORK_DEPENDENCIES = zlib $(call qstrip,$(BR2_PACKAGE_SDK_INSTALL)) host-wpeframework-tools
@@ -79,6 +79,10 @@ WPEFRAMEWORK_DEPENDENCIES += bcm-refsw
 endif
 else ifeq  ($(BR2_PACKAGE_RPI_FIRMWARE),y)
 WPEFRAMEWORK_CONF_OPTS += -DPLUGIN_COMPOSITOR_IMPLEMENTATION=RPI
+ifeq ($(BR2_PACKAGE_RPI_FIRMWARE_VARIANT_PI4),y)
+WPEFRAMEWORK_CONF_OPTS += -DVC6=ON
+WPEFRAMEWORK_DEPENDENCIES += libdrm mesa3d
+endif
 else
 $(error Missing a compositor implemtation, please provide one or disable PLUGIN_COMPOSITOR)
 endif

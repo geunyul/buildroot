@@ -4,10 +4,10 @@
 #
 ################################################################################
 
-WPEBACKEND_RDK_VERSION = 3ec8dfd1a1f1cede256fd5de0a63a8c6b6a31ffa
+WPEBACKEND_RDK_VERSION = 4e9a79d25f6a8f5fe6ca52376db8c757f0193987
 WPEBACKEND_RDK_SITE = $(call github,WebPlatformForEmbedded,WPEBackend-rdk,$(WPEBACKEND_RDK_VERSION))
 WPEBACKEND_RDK_INSTALL_STAGING = YES
-WPEBACKEND_RDK_DEPENDENCIES = libwpe libglib2 rpi-userland libinput
+WPEBACKEND_RDK_DEPENDENCIES = libwpe libglib2 libinput
 
 ifeq ($(BR2_PACKAGE_LIBXKBCOMMON),y)
 WPEBACKEND_RDK_DEPENDENCIES += libxkbcommon
