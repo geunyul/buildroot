@@ -708,6 +708,12 @@ config BR2_PACKAGE_WPEFRAMEWORK_STREAMER_AAMP_USE_WESTEROS_SINK
 
 endif # BR2_PACKAGE_WPEFRAMEWORK_STREAMER_AAMP
 
+menuconfig BR2_PACKAGE_WPEFRAMEWORK_STREAMER_CENC
+    bool "CENC"
+    default n
+    help
+      Enable the CENC player
+
 menuconfig BR2_PACKAGE_WPEFRAMEWORK_STREAMER_BROADCAST
     bool "Broadcast"
     default n
